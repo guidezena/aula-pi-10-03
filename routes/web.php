@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CarrinhoController;
 
 require __DIR__.'/auth.php';
 
@@ -19,4 +20,4 @@ Route::get('/dashboard', function () {
 
 route::resource('/product', ProductsController::class);
 Route::resource('/category', CategoriesController::class);
-Route::resource('/tag', TagController::class)->middleware(['auth'])->name('dashboard');
+Route::resource('/tag', TagController::class);
