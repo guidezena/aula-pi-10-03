@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CarrinhoController;
 
+
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
@@ -18,6 +19,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-route::resource('/product', ProductsController::class);
+Route::resource('/product', ProductsController::class);
+
+Route::get('/trash/product',[ProductsController::class, 'trash'])->name('product.trash');
+Route::patch('/product/restore/{Product}',[ProductsController::class, 'restore'])->name('product.restore');
+
+
 Route::resource('/category', CategoriesController::class);
 Route::resource('/tag', TagController::class);

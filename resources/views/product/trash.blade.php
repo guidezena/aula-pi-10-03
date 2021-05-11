@@ -21,7 +21,6 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>imagem</th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Descrição</th>
@@ -33,15 +32,15 @@
                     @foreach($products as $prod)
                     <tr>
                         <td>{{$prod->id}}</td>
-                        <td><img src="{{asset($prod->image)}}" style="width: 35px;"> </td>
                         <td>{{$prod->name}}</td>
                         <td>{{$prod->price}}</td>
                         <td>{{$prod->description}}</td>
                         <td>{{$prod->category->name}}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-success"> Visualizar</a>
-                            <a href="{{route('product.edit', $prod->id)}}" class="btn btn-sm btn-warning"> Editar</a>
-                            <a href="#" onclick="remover('{{route('product.destroy', $prod->id)}}');" class="btn btn-sm btn-danger"> Apagar</a>
+                        <form action="{{route('product.restore'), $prod->id }}" method="POST" onsubmit="return restore()" class="d-inline"></form>
+                            @method('PATCH')
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-primary">Restaurar</button>
                         </td>
                     </tr>
                     @endforeach
